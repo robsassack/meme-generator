@@ -2,14 +2,12 @@ import React from "react";
 import memesData from "../memesData";
 
 export default function Meme() {
-  const [memeUrl, setMemeUrl] = React.useState('');
-  const [memeAlt, setMemeAlt] = React.useState('');
+  const [currentMeme, setCurrentMeme] = React.useState({memeUrl: '', memeAlt: ''});
 
   function getMeme() {
     let memeArr = memesData.data.memes;
     let randomMeme = memeArr[Math.floor(Math.random() * memeArr.length)];
-    setMemeUrl(randomMeme.url);
-    setMemeAlt(`${randomMeme.name} meme`);
+    setCurrentMeme({memeUrl: randomMeme.url, memeAlt: randomMeme.name});
   }
 
   return (
@@ -34,7 +32,7 @@ export default function Meme() {
           onClick={getMeme}
         />
       </div>
-      <img src={memeUrl} alt={memeAlt} className='meme--image' />
+      <img src={currentMeme.memeUrl} alt={currentMeme.memeAlt} className='meme--image' />
     </div>
   );
 }
