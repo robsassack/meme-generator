@@ -2,12 +2,24 @@ import React from "react";
 import memesData from "../memesData";
 
 export default function Meme() {
-  const [currentMeme, setCurrentMeme] = React.useState({memeUrl: '', memeAlt: ''});
+  const [meme, setMeme] = React.useState({
+    memeUrl: "https://i.imgflip.com/1bij.jpg",
+    memeAlt: "One Does Not Simply",
+    topText: "",
+    bottomText: "",
+  });
+  const [allMemeImages, setAllMemeImages] = React.useState(memesData);
 
   function getMeme() {
-    let memeArr = memesData.data.memes;
+    let memeArr = allMemeImages.data.memes;
     let randomMeme = memeArr[Math.floor(Math.random() * memeArr.length)];
-    setCurrentMeme({memeUrl: randomMeme.url, memeAlt: randomMeme.name});
+    setMeme((prevMeme) => {
+      return {
+        ...prevMeme,
+        memeUrl: randomMeme.url,
+        memeAlt: randomMeme.name,
+      };
+    });
   }
 
   return (
@@ -32,7 +44,7 @@ export default function Meme() {
           onClick={getMeme}
         />
       </div>
-      <img src={currentMeme.memeUrl} alt={currentMeme.memeAlt} className='meme--image' />
+      <img src={meme.memeUrl} alt={meme.memeAlt} className='meme--image' />
     </div>
   );
 }
