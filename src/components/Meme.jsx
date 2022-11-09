@@ -41,6 +41,7 @@ export default function Meme() {
           className='meme--input'
           placeholder='Nice meme'
           onChange={handleChange}
+          value={meme.topText}
         />
         <input
           type='text'
@@ -48,6 +49,7 @@ export default function Meme() {
           className='meme--input'
           placeholder='Bottom text'
           onChange={handleChange}
+          value={meme.bottomText}
         />
         <input
           type='button'
