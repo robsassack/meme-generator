@@ -73,8 +73,33 @@
   letter-spacing: -0.05em;
 }
 
+.meme--container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
 .meme--image {
-  padding-top: 35px;
   max-width: 450px;
-  height: auto;
+  width: 100%;
+}
+
+.meme--text {
+  position: absolute;
+  font-family: 'Impact';
+  color: white;
+  font-size: 2rem;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  letter-spacing: 1px;
+  margin: 15px;
+}
+
+.top {
+  top: 0;
+}
+
+.bottom {
+  bottom: 0;
 }

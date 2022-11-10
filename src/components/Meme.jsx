@@ -59,7 +59,11 @@ export default function Meme() {
           onClick={getMeme}
         />
       </div>
-      <img src={meme.memeUrl} alt={meme.memeAlt} className='meme--image' />
+      <div className="meme--container">
+        <img src={meme.memeUrl} alt={meme.memeAlt} className='meme--image' />
+        <h2 className='meme--text top'>{meme.topText.toUpperCase()}</h2>
+        <h2 className='meme--text bottom'>{meme.bottomText.toUpperCase()}</h2>
+      </div>
     </div>
   );
 }
