@@ -3,8 +3,8 @@ import memesData from "../memesData";
 
 export default function Meme() {
   const [meme, setMeme] = React.useState({
-    memeUrl: "https://i.imgflip.com/1bij.jpg",
-    memeAlt: "One Does Not Simply",
+    memeUrl: "",
+    memeAlt: "",
     topText: "",
     bottomText: "",
   });
@@ -32,6 +32,11 @@ export default function Meme() {
       };
     })
   }
+
+  // get random image on initial component load
+  React.useEffect(() => {
+    getMeme();
+  }, []);
 
   return (
     <div className='meme'>
