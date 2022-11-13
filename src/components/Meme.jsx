@@ -11,20 +11,21 @@ export default function Meme() {
 
   React.useEffect(() => {
     // pull data from API
-    fetch("https://api.imgflip.com/get_memes")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllMemeImages(data.data.memes);
-      });
+    async function getMemes() {
+      const res = await fetch("https://api.imgflip.com/get_memes");
+      const data = await res.json();
+      setAllMemeImages(data.data.memes);
+    }
+    getMemes();
   }, []);
 
   React.useEffect(() => {
-    if(allMemeImages.length > 0) {
-      getMeme();
+    if (allMemeImages.length > 0) {
+      getRandomMeme();
     }
   }, [allMemeImages]);
 
-  function getMeme() {
+  function getRandomMeme() {
     const randomNum = Math.floor(Math.random() * allMemeImages.length);
     const url = allMemeImages[randomNum].url;
     const alt = allMemeImages[randomNum].name;
@@ -37,7 +38,6 @@ export default function Meme() {
     });
   }
 
-
   function handleChange(event) {
     const { name, value } = event.target;
     setMeme((prevMeme) => {
@@ -45,7 +45,7 @@ export default function Meme() {
         ...prevMeme,
         [name]: value,
       };
-    })
+    });
   }
 
   return (
@@ -71,10 +71,10 @@ export default function Meme() {
           type='button'
           value='Get a new meme image 🖼'
           className='meme--submit'
-          onClick={getMeme}
+          onClick={getRandomMeme}
         />
       </div>
-      <div className="meme--container">
+      <div className='meme--container'>
         <img src={meme.memeUrl} alt={meme.memeAlt} className='meme--image' />
         <h2 className='meme--text top'>{meme.topText.toUpperCase()}</h2>
         <h2 className='meme--text bottom'>{meme.bottomText.toUpperCase()}</h2>
